@@ -1,5 +1,4 @@
-
-s = require('express');
+var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 var truckRoutes = require('./routes/truckRoutes');
@@ -12,8 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/trucks', truckRoutes);
 var port = process.env.PORT || 3000;
-// app.get('/trucks', function (request, response) {
-// //var query = request.query;
+//app.get('/trucks', function (request, response) {
+//var query = request.query;
 // Truck.find(function (error, trucks) {
 // if (error) {
 // response.status(500).send(error);

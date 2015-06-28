@@ -6,7 +6,7 @@ var db = mongoose.createConnection('mongodb://localhost/foodTruckAPI');
 var Truck = require('../models/truckModel');
 var router = express.Router();
 
-router.route('/trucks')
+router.route('/')
 	.get(function(request, response) {
 		Truck.find(function (error, trucks) {
 			if (error) {
@@ -15,6 +15,15 @@ router.route('/trucks')
 				response.json(trucks);
 			}
 		});
+	})
+	.post(function(request, response) {
+		var newTruck = new Truck(request.body);
+		if (newTruck) {
+			newTruck.save();
+			response.status(200).send(newTruck);
+		} else {
+			response.status(400).send('unable to create truck');
+		}
 	});
 
 router.route('/:truckId')
